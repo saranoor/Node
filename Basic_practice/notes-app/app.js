@@ -25,7 +25,7 @@ yargs.command({
     
         }
     },
-    handler: function(argv){
+    handler (argv){
         notes.addNote(argv.title, argv.body)
         console.log('Add an new note!', argv.title, argv.body)
     }
@@ -44,14 +44,14 @@ yargs.command({
         }
     },
 
-    handler: function(argv){
+    handler (argv){
         notes.removeNote(argv.title)
     }
 })
 yargs.command({
     command:'list',
     describe: 'list a new role',
-    handler: function(){
+    handler (){
         console.log('list an new note!')
     }
 })
@@ -59,7 +59,7 @@ yargs.command({
 yargs.command({
     command:'read',
     describe: 'Read a new role',
-    handler: function(){
+    handler(){
         console.log('Read an new note!')
     }
 })
