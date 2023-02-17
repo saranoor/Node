@@ -1,12 +1,13 @@
-const request= require('request')
-const url = 'http://api.weatherstack.com/current?access_key=7249afc584a89137686942c88950f1ee&query='
-request({url:url},(error, response)=>{
-    if (error)
-    {
-        console.log(error, 'unable to connect')
-    }
-    else{
-        const data= JSON.parse(response.body)
-        console.log(data.location.lat,data.location.lon)
-    }
+const geocode = require('./utils/geo-code.js')
+const forecast = require('./utils/forecast.js')
+
+
+geocode('Pakistan',(error,response)=>{
+    console.log(error)
+    console.log(response)
+})
+
+forecast(40.7831,'-73.97kkk12', (error, data) => {
+  console.log('Error', error)
+  console.log('Data', data)
 })
