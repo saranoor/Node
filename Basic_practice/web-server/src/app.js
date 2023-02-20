@@ -5,6 +5,15 @@ const app = express()
 app.get('',(req, res)=>{
     res.send('Hello express!')
 })
+
+app.get('/help', (req, res) =>{
+    res.send('Help page')
+})
+
+app.get('/about',(req, res)=>{
+    res.send('About Page')
+})
+
 // app.com
 // app.com/help
 // app.com/about
