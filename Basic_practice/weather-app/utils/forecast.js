@@ -24,7 +24,7 @@ const forecast=(lat, lon, callback)=>{
             callback('Unable to find location', undefined)
         }
         else{
-            callback(null,  response.body.current.weather_descriptions)
+            callback(null,  response.body.current.weather_descriptions + ' temperature is :'+response.body.current.temperature)
     //        providing an argument to another function is called callback function
     }})
 

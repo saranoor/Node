@@ -22,9 +22,9 @@ const geocode=(address, callback)=>{
     })
 }
 
-geocode('Pakistan',(error,response)=>{
-    console.log(error)
-    console.log(response)
-})
+//geocode('Pakistan',(error,response)=>{
+//    console.log(error)
+//    console.log(response)
+//})
 
-module.export=geocode
+module.exports=geocode
