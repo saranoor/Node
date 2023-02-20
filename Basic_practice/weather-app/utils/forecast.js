@@ -14,17 +14,17 @@ const request= require('request')
 const forecast=(lat, lon, callback)=>{
     const url = 'http://api.weatherstack.com/current?access_key=7249afc584a89137686942c88950f1ee&query='+lat+','+lon
     console.log(url)
-    request({url:url, json:true},(error, response)=>{
+    request({url, json:true},(error, {body})=>{
         if (error)
         {
             console.log(error, 'unable to connect')
             callback('Unable to connect', Undefined)
         }
-        else if (response.body.error){
+        else if (body.error){
             callback('Unable to find location', undefined)
         }
         else{
-            callback(null,  response.body.current.weather_descriptions + ' temperature is :'+response.body.current.temperature)
+            callback(null,  body.current.weather_descriptions + ' temperature is :'+body.current.temperature)
     //        providing an argument to another function is called callback function
     }})
 

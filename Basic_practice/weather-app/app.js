@@ -6,10 +6,10 @@ if (!address){
     console.log("please provide address")
 }else{
     // callback chainging
-    geocode(address,(error,response)=>{
+    geocode(address,(error,{latitutde, longitude, location} = {})=>{
         console.log(error)
-        console.log(response)
-        forecast(response.latitutde,response.longitude, (error, forecastData) => {
+        console.log(latitutde, longitude)
+        forecast(latitutde,longitude, (error, forecastData) => {
             console.log('Error', error)
             console.log('Data', forecastData)
         })
