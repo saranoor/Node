@@ -8,6 +8,17 @@ const app = express()
 app.set('view engine','hbs')
 app.use(express.static(path.join(__dirname,'../public')))
 
+app.get('',(req, res)=>{
+    res.render('index',{
+        title: 'Weather App'
+    })
+})
+
+app.get('/about',(req, res)=>{
+    res.render('about',{
+        message:'We are a platform...'
+    })
+})
 app.get('/help', (req, res) =>{
     res.send('Help page')
 })
