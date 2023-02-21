@@ -16,8 +16,22 @@ MongoClient.connect(connectionURL,{ useNewUrlParser:true}, (error, client)=>{
         return console.log('Unable to connect')
     }
     const db = client.db(databaseName)
-    db.collection('users').find({name:'Jen'}).toArray((error, users)=>{
-        console.log(users)
-        })
+//    db.collection('users').find({name:'Jen'}).toArray((error, users)=>{
+//        console.log(users)
+//        })
+
+    const updatePromise=db.collection('users').updateMany({
+        name:'John'
+    },{
+        $inc :{
+            age:1
+        }
+    })
+    updatePromise.then((result)=>{
+        console.log(result)
+    }).catch((error)=>{
+        console.log(error)
+    })
 })
+
 
