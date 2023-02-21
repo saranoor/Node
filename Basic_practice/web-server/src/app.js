@@ -1,4 +1,8 @@
+const path = require('path')
 const express = require('express')
+
+console.log(__dirname, __filename)
+console.log(path.join(__dirname,'..'))
 
 const app = express()
 
@@ -11,9 +15,15 @@ app.get('/help', (req, res) =>{
 })
 
 app.get('/about',(req, res)=>{
-    res.send('About Page')
+    res.send('<h1>About Page</h1>')
 })
 
+app.get('/contact',(req, res)=>{
+    res.send({
+        forecast:"windy",
+        location:"xyz"
+    })
+})
 // app.com
 // app.com/help
 // app.com/about
