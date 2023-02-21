@@ -1,11 +1,17 @@
 const path = require('path')
 const express = require('express')
 
+
 console.log(__dirname, __filename)
 console.log(path.join(__dirname,'../public'))
+// define path for express config
+const viewsPath= path.join(__dirname, '../templates')
 
 const app = express()
+
+// setup handler bar engine and views location
 app.set('view engine','hbs')
+app.set('views', viewsPath)
 app.use(express.static(path.join(__dirname,'../public')))
 
 app.get('',(req, res)=>{
