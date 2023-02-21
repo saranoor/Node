@@ -2,13 +2,11 @@ const path = require('path')
 const express = require('express')
 
 console.log(__dirname, __filename)
-console.log(path.join(__dirname,'..'))
+console.log(path.join(__dirname,'../public'))
 
 const app = express()
 
-app.get('',(req, res)=>{
-    res.send('Hello express!')
-})
+app.use(express.static(path.join(__dirname,'../public')))
 
 app.get('/help', (req, res) =>{
     res.send('Help page')
