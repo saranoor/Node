@@ -1,3 +1,6 @@
+const geocode = require('./utils/geo-code.js')
+const forecast = require('./utils/forecast.js')
+
 const path = require('path')
 const express = require('express')
 const hbs = require('hbs')
@@ -37,10 +40,23 @@ app.get('/weather',(req, res)=>{
         error:"you must provide a address"
         })
     }
-    res.send({
-        forecast:"windy",
-        location:req.query.address
+    // callback chainging
+    geocode(req.query.address,(error,{latitutde, longitude, location} = {})=>{
+        if (error){
+          return res.send({error:error})
+          }
+        forecast(latitutde,longitude, (error, forecastData) => {
+            if (error){
+                  return res.send({error:error})
+
+            }
+            res.send({
+                forecast:forecastData,
+                location:req.query.address
+            })
+        })
     })
+
 })
 
 app.get('/products',(req, res)=>{
