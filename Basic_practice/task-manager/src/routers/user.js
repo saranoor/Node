@@ -76,19 +76,37 @@ router.delete('/users/:id', async(req, res)=>{
 })
 
 const upload = multer({
-    dest:'avatars',
+    dest:"avatars",
     limits:{
-        fileSize:100
+        fileSize:1000000
     },
     fileFilter(req, file, cb){
-        if (!file.originalname.match(/\.(doc|docx)$/)){
+        if (!file.originalname.match(/\.(jpeg)$/)){
             return cb(new Error('Upload word'))
         }
-        cb(new Error('file must be pdf'))
+        cb(undefined, true)
     }
 })
 
-router.post('/user/me/avatar', upload.single('avatar'),(req, res)=>{
+router.post('/users/me/avatar', upload.single('avatar'), async(req, res)=>{
+//    req.user.avatar=req.file.buffer
+//    await req.user.save()
     res.send()
+    },(error, req, res, next) =>{
+        res.status(400).send({error: error.message})
+    }
+)
+
+router.delete('/users/:id/avatar', async(req, res)=>{
+    try{
+        const user= await User.findById(req.params.id)
+        if (!user || !user.avatar){
+            throw new Error()
+        }
+        res.set('Content-Type', '')
+        res.send(user.avatar)
+    }catch(e){
+        res.status(404).send(user)
+    }
 })
 module.exports= router
