@@ -18,11 +18,11 @@ const firstCollection = new taskUser({
     description:'eat breakfast'
 })
 
-firstCollection.save().then(()=>{
-    console.log(firstCollection)
-}).catch((error)=>{
-    console.log('Error', error)
-})
+//firstCollection.save().then(()=>{
+//    console.log(firstCollection)
+//}).catch((error)=>{
+//    console.log('Error', error)
+//})
 //const me = new User({
 //    name:"Karen",
 //    age:'26oooogfh'
