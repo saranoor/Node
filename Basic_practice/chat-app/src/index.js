@@ -22,6 +22,14 @@ io.on('connection', (socket) => {
         io.emit('message',message )
     })
 
+    socket.on('sendLocation', (latitude, longitude)=>{
+        io.emit('message',"Location:"+toString(latitude)+toString(longitude))
+    })
+
+//    socket.disconnect('disconnect',()=>{
+//        io.emit('message', 'A user has left')
+//    })
+
 })
 
 
