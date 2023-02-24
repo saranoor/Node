@@ -2,7 +2,7 @@ const path = require('path')
 const http = require('http')
 const express = require('express')
 const socketio = require('socket.io')
-
+const Filter = require('bad-words')
 const app = express()
 const server = http.createServer(app)
 const io = socketio(server)
@@ -18,8 +18,14 @@ io.on('connection', (socket) => {
 
     socket.emit('message',"Welcome to server!")
 
-    socket.on('sendMessage', (message) => {
+    socket.on('sendMessage', (message, callback) => {
         io.emit('message',message )
+        const filter = new Filter()
+        if (filter.isProfane(message)){
+            console.log('profanity is not allowed')
+        }
+//        io.emit('message', message)
+        callback('Delivered')
     })
 
     socket.on('sendLocation', (latitude, longitude)=>{
